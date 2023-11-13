@@ -1,108 +1,118 @@
 @import "./reset.scss";
 
+
+$grey:#cdcdcd;
+
 body {
-  background: #dce6d1;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #bcbfbf;
 }
 
 .phone{
-  background-color: black;
-  border-radius: 50px;
-  height: 95%;
-  width: 420px;
-  padding: 50px 10px;
-  box-sizing: border-box;
+  width: 480px;
+  height: 90%; 
+  border-radius: 10px;
+  background-color: $grey;
+  box-shadow: 5px 10px 10px rgba($color: #000000, $alpha: 0.5);
 }
 
 .header{
-  overflow-x: scroll;
-  .header__list{
-    display: flex;
-    color: white;
-    gap: 10px;
-    width: max-content;
+  padding: 50px 15px 20px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header__title{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
 
-    .header__list-item{
-      border: 1px solid rgba($color: #fff, $alpha: 0.5);
-      padding: 10px;
-      border-radius: 20px;
-    }
-    .header__list-item--inverted{
-      background-color: white;
-      color: black;
+.total{
+  background-color: black;
+  padding: 30px 15px;
+  color: $grey;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: bold;
+  gap: 10px;
+  .total__price{
+    font-size: 22px;
+  }
+  .total__subtitle{
+    font-size: 14px;
+  }
+}
+
+.items{
+  background-color: #c6caca;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .item{
+    border-top: 5px solid black;
+    position: relative;
+    .item__info{
+      background-color: #d7dbdb;
+      padding: 30px 15px;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      align-items: flex-start;
+      .item__info-col{
+        font-weight: bold;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        &:nth-child(2){
+          align-items: flex-end;
+        }
+      }
+      .item__title{
+        font-size: 42px;
+      }
+      .item__subtitle{
+        font-size: 14px;
+      }
+      .item__total-price{
+        font-size: 34px;
+        
+      }
+      .item__piece-price{
+        font-size: 18px;
+      }
     }
   }
 }
 
-
-.cards{
-  margin: 20px 0px;
+.item__specs{
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-
-  .cards__card{
-    background-color: white;
-    padding: 10px;
-    border-radius: 15px;
+  grid-template-columns: repeat(auto-fill,125px );
+  background-color: #d7dbdb;
+  .spec{
+    padding: 25px ;
     display: flex;
+    font-weight: bold;
+
     flex-direction: column;
-    gap: 40px;
-    justify-content: space-between;
-
-    .card__title{
-      font-size: 28px;
-    }
-
-    .card__footer{
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      span{
-        padding: 5px 10px;
-        border-radius: 15px;
-        border: 1px solid black;
-      }
-      .price{
-      background-color: rgb(255, 221, 44);
-      }
-      .length{
-        background-color: white;
-       
-      }
-    }
-
-    &:first-child{
-      background-color: #292d33;
-      border: 1px solid white;
-      .card__title{
-        color: white;
-
-      }
-    }
-    &:nth-child(2){
-      background-color: #f5f4ef; 
-    }
-    &:nth-child(3){
-      background-color: #f8fcb5;
-    }
-    &:nth-child(4){
-      background-color: #B19FF6;
-    }
-    &:nth-child(5){
-      background-color: #fed3d3;
-    }
-    &:nth-child(6){
-      background-color: #d0fedf;
-    }
-    &:nth-child(3n){
-      grid-column: span 2;;
+    justify-content: center;
+    &:last-child{
+      border-left: 5px solid black;
     }
   }
-  
-  
+}
+
+.item__photo{
+  position: absolute;
+  height: 60%;
+  width: 30%;
+  border: 5px solid black;
+  right: 15px;
+  bottom: 0px;
+  object-fit: cover;
 }
