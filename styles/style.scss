@@ -1,118 +1,155 @@
 @import "./reset.scss";
 
-$bg:#F0F0F0;
-$accent: #c7c2cc;
-$borderWidth: 2px;
+$green: #01ff00;
+$grey: #d9d9d9;
+$lightGrey: #f0f0f0;
 
-@keyframes slide{
+@keyframes top-slide{
   0%{
-    transform:translateY((-3000%)) rotateZ(90deg);
+    transform: translateX(-25%);
+  }
+  50%{
+    transform: translateX(0%);
   }
   100%{
-    transform:translateY(calc(0% - 65px)) rotateZ(90deg);
+    transform: translateX(-25%);
+  }
+}
+@keyframes bottom-slide{
+  0%{
+    transform: translateX(25%);
+  }
+  50%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(25%);
+  }
+}
+@keyframes left-slide{
+  0%{
+    transform: translateY(10000%) rotateZ(90deg);
+  }
+  50%{
+    transform: translateY(0%) rotateZ(90deg);
+  }
+  100%{
+    transform: translateY(10000%) rotateZ(90deg);
+  }
+}
+@keyframes right-slide{
+  0%{
+    transform: translateY(-10000%) rotateZ(-90deg);
+  }
+  50%{
+    transform: translateY(0%) rotateZ(-90deg);
+  }
+  100%{
+    transform: translateY(-10000%) rotateZ(-90deg);
   }
 }
 
 body{
-  display: grid;
-  gap: $borderWidth;
-  background-color: black;
-  grid-template-rows: 10fr 10fr 45fr 35fr;
-  grid-template-columns: 0.3fr repeat(4, 1fr);
   height: 100vh;
-  div{
-    background-color: $bg;
-    overflow: hidden;
-    img{
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-    &:nth-child(11){
-      grid-column: span 3;
-    }
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 50px 1fr 50px;
+}
+
+
+
+.bar{
+  background-color: $green;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  span{
+    font-weight: 600;
+    font-size: 18px;
+    position: absolute;
+    width: max-content;
   }
-  .logo{
-    grid-area: span 2/ span 2;
-    font-size: 198px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .title{
+  &:first-child,
+  &:last-child{
     grid-column: span 3;
-    font-size: 66px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     
   }
-  .banner{
+  &:first-child{
+    span{
+      animation: top-slide 20s linear infinite;
+      }
+  }
+  &:nth-child(2){
+    span{
+      animation: left-slide 20s linear infinite;
+    }
+  }
+  &:nth-child(4){
+    span{
+      animation: right-slide 20s linear infinite;
+    }
+  }
+  &:last-child{
+    span{
+      animation: bottom-slide 20s linear infinite;
+      }
+  }
+  
+}
+
+main{
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(8,1fr);
+  background-color: black;
+  height: calc(100vh - 100px);
+  >div{
+    background-color: $grey;
+    overflow: hidden;
+    &:has(img){
+      padding: 20px;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &:nth-child(5){
+      grid-column: span 2;
+    }
+    &:nth-child(7){
+      grid-column: span 2;
+      grid-row: span 4;
+    }
+    &:nth-child(8),&:nth-child(13){
+      grid-column: span 4;
+    }
+    &:nth-child(9), &:nth-child(10),&:nth-child(11),&:nth-child(12),&:nth-child(14){
+      grid-column: span 2;
+      background-color: $lightGrey;
+    }
+    &:nth-child(10),&:nth-child(11),&:nth-child(12),&:nth-child(13),&:nth-child(14){
+      grid-row: span 2;
+    }
+    border-radius: 15px;
+  }
+  .title{
     grid-row: span 2;
-    background-color: black;
+    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    position: relative;
-    span{
-      position: absolute;
-      width: max-content;
-      color: white;
-      font-weight: 600;
-      font-size: 26px;
-      transform: rotateZ(90deg);
-      animation: slide 5s linear infinite;
-    }
+    font-size: 172px;
+    font-weight: 600;
   }
   .nav-btn{
     display: flex;
     justify-content: center;
-    padding-left: 20px;
-    flex-direction: column;
-    gap: 5px;
-    .nav-btn__name{
-      font-weight: 600;
-      font-size: 24px;
-      .nav-btn__desec{
-        font-size: 18px;
-      }
-    }
-  }
-  .post{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    &.post--big{
-      .post__title{
-        font-size: 200px;
-      }
-    }
-    .post__title{
-      font-size: 44px;
-      font-weight: 600;
-    }
-    p{
-      font-size: 22px;
-    }
-  }
-  .featured{
-    background-color: $accent;
-    padding: 50px;
-    display: flex;
-    div{
-      border: $borderWidth solid black;
-      background-color: $bg;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      h3{
-        text-align: center;
-        font-size: 48px;
-        font-weight: 600;
-      }
-    }
+    align-items: center;
+    font-weight: 600;
+    font-size: 22px;
   }
 }
