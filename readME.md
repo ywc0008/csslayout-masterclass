@@ -8,4 +8,4 @@
 [6번 코드챌린지]
 [7번 코드챌린지](https://replit.com/@ywc0008/css-challenge-7#style.css)
 [8번 코드챌린지](https://replit.com/@ywc0008/css-challenge-8)
-[9번 코드챌린지](https://replit.com/@ywc0008/css-challenge-9)
+[9번 코드챌린지](https://css-challenge-9.ywc0008.repl.co/)
